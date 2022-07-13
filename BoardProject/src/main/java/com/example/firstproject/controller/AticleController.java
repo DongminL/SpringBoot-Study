@@ -1,8 +1,10 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.dto.ArticleForm;
+import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import com.example.firstproject.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class AticleController {
 
     @Autowired  // 스프링 부트가 미리 생성해놓은 객체를 가져다가 자동 연결!
     private ArticleRepository articleRepository;    // Repository 객체 선언
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/articles/new") // localhost:8080/articles/new 주소로 받음
     public String newArticleForm() {
@@ -51,9 +56,11 @@ public class AticleController {
 
         // 1. id로 데이터를 가져옴!
         Article articeEntity = articleRepository.findById(id).orElse(null); // orElse(null)은 값이 없어서 찾음
+        List<CommentDto> commentDtos = commentService.comments(id);
 
         // 2. 가져온 데이터를 모델에 등록하고 뷰로 전달!
         model.addAttribute("article", articeEntity);
+        model.addAttribute("commentDtos", commentDtos);
 
         // 3. 보여줄 페이지를 설정!
         return "articles/show"; // articles 폴더에 show.mastache 파일을 브라우저로 전송
