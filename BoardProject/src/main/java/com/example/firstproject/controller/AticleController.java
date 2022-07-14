@@ -60,7 +60,7 @@ public class AticleController {
 
         // 2. 가져온 데이터를 모델에 등록하고 뷰로 전달!
         model.addAttribute("article", articeEntity);   
-        model.addAttribute("commentDtos", commentDtos); // DTO List를 모델에 등록하고 뷰로 전달
+        model.addAttribute("commentDtos", commentDtos); // 댓글 DTO List를 모델에 등록하고 뷰로 전달
 
         // 3. 보여줄 페이지를 설정!
         return "articles/show"; // articles 폴더에 show.mastache 파일을 브라우저로 전송
