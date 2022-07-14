@@ -56,11 +56,11 @@ public class AticleController {
 
         // 1. id로 데이터를 가져옴!
         Article articeEntity = articleRepository.findById(id).orElse(null); // orElse(null)은 값이 없어서 찾음
-        List<CommentDto> commentDtos = commentService.comments(id);
+        List<CommentDto> commentDtos = commentService.comments(id); // Article ID에 맞는 댓글들을 DTO List로 불러옴
 
         // 2. 가져온 데이터를 모델에 등록하고 뷰로 전달!
-        model.addAttribute("article", articeEntity);
-        model.addAttribute("commentDtos", commentDtos);
+        model.addAttribute("article", articeEntity);   
+        model.addAttribute("commentDtos", commentDtos); // DTO List를 모델에 등록하고 뷰로 전달
 
         // 3. 보여줄 페이지를 설정!
         return "articles/show"; // articles 폴더에 show.mastache 파일을 브라우저로 전송

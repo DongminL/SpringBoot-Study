@@ -49,7 +49,7 @@ public class ArticleServive {
         }
 
         // 4. 업데이트 및 정상 응답(200)
-        target.patch(article);  // 업데이트 시 누락된 데이터 유지
+        target.patch(article);  // 수정하지 않는 데이터를 유지한채 조회한 댓글 수정
         Article updated = articleRepository.save(target);   // 업데이트된 Entity를 DB에 저장
         return updated; // 업데이트된 Entity 리턴
     }

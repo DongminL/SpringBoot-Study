@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@RestController // RestAPI 용 컨트롤러! 데이터(JSON)를 리턴
-@Slf4j
+@RestController // RestAPI용 컨트롤러! 데이터(JSON)를 리턴
+@Slf4j  // log를 사용할 수 있음
 public class ArticleApiController {
 
     @Autowired  // DI, 스프링 부트가 이미 생성해 놓은 객체를 가져와 연결
@@ -40,7 +40,7 @@ public class ArticleApiController {
     }
 
     // PATCH
-    @PatchMapping("/api/articles/{id}") // http://localhost:8080/api/articles/id 주소의 데이터 업데이트
+    @PatchMapping("/api/articles/{id}") // http://localhost:8080/api/articles/id 주소의 데이터 수정
     public ResponseEntity<Article> update(@PathVariable Long id, @RequestBody ArticleForm dto) {
         Article updated = articleServive.update(id, dto);   // Service 계층을 통해 DB에 해당 id의 데이터를 DTO에 맞게 수정
         return (updated != null) ?

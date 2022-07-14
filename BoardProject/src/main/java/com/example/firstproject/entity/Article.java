@@ -24,11 +24,11 @@ public class Article {
     @Column // 변수를 DB에 저장하기 위해 Column으로 지정
     private String content; // 내용
 
-    // 업데이트 시 누락된 데이터 유지
+    // 수정하지 않는 데이터를 유지한채 데이터 수정
     public void patch(Article article) {
-        if (article.title != null)  // 원본 데이터가 null이 아니면
-            this.title = article.title; // 원래 데이터 저장
-        if (article.content != null)    // 원본 데이터가 null이 아니면
-            this.content = article.content; // 원래 데이터 저장
+        if (article.title != null)  // 제목을 수정할 것이면
+            this.title = article.title; // 제목 수정
+        if (article.content != null)    // 내용을 수정할 것이면
+            this.content = article.content; // 내용 수정
     }
 }
