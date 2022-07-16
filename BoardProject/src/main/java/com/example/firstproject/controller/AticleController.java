@@ -101,12 +101,12 @@ public class AticleController {
         // 2. Entity를 DB로 저장!
         // 2-1. DB에서 기존 데이터를 가져온다!
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
-        
+
         // 2-2. 기존 데이터에 값을 갱신!
         if (target != null) {   // id가 있으면
             articleRepository.save(articleEntity);  // Entity가 DB로 갱신됨
         }
-        
+
         // 3. 수정 결과 페이지로 Redirect!
         return "redirect:/articles/" + articleEntity.getId();
     }
