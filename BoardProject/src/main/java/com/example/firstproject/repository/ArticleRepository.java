@@ -2,9 +2,11 @@ package com.example.firstproject.repository;
 
 import com.example.firstproject.entity.Article;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public interface ArticleRepository extends CrudRepository<Article, Long> {
     // DB에 접근하기 위한 Repository로 CrudRepository에 상속 받아
     // Entity인 Article 클래스와 Long타입 id를 가지고 서로 주고 받음
