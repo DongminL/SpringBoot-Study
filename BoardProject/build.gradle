@@ -13,6 +13,15 @@ repositories {
 }
 
 dependencies {
+	// GSON 라이브러리
+	implementation 'com.google.code.gson:gson:2.9.0'
+
+	// JSON 라이브러리
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+	// 웹 크롤링 JSOUP
+	implementation 'org.jsoup:jsoup:1.14.2'
+
 	// MySQL 드라이버 추가!
 	runtimeOnly 'mysql:mysql-connector-java'
 
