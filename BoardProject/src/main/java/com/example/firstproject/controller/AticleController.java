@@ -4,6 +4,7 @@ import com.example.firstproject.dto.ArticleForm;
 import com.example.firstproject.dto.CommentDto;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import com.example.firstproject.service.ArticleServive;
 import com.example.firstproject.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class AticleController {
 
     @Autowired  // 스프링 부트가 미리 생성해놓은 객체를 가져다가 자동 연결!
     private ArticleRepository articleRepository;    // Repository 객체 선언
+
+    @Autowired
+    private ArticleServive articleServive;
 
     @Autowired
     private CommentService commentService;
@@ -55,11 +59,11 @@ public class AticleController {
         log.info("id = " + id); // 주소를 통해 연결된 id 값을 로그 형태로 확인
 
         // 1. id로 데이터를 가져옴!
-        Article articeEntity = articleRepository.findById(id).orElse(null); // orElse(null)은 값이 없어서 찾음
+        Article articeEntity = articleServive.show(id); // orElse(null)은 값이 없어서 찾음
         List<CommentDto> commentDtos = commentService.comments(id); // Article ID에 맞는 댓글들을 DTO List로 불러옴
 
         // 2. 가져온 데이터를 모델에 등록하고 뷰로 전달!
-        model.addAttribute("article", articeEntity);   
+        model.addAttribute("article", articeEntity);
         model.addAttribute("commentDtos", commentDtos); // 댓글 DTO List를 모델에 등록하고 뷰로 전달
 
         // 3. 보여줄 페이지를 설정!
@@ -93,11 +97,11 @@ public class AticleController {
     @PostMapping("articles/update") // localhost:8080/articles/update 주소로 보냄
     public String update(ArticleForm form) {
         log.info(form.toString());
-        
+
         // 1. DTO를 Entity로 변환!
         Article articleEntity = form.toEntity();    // Entity로 변환
         log.info(articleEntity.toString()); // 로그 형태로 Entity 정보 확인
-        
+
         // 2. Entity를 DB로 저장!
         // 2-1. DB에서 기존 데이터를 가져온다!
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);

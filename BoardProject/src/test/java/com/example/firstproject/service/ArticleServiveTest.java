@@ -68,7 +68,7 @@ class ArticleServiveTest {
         String title = "라라라라";
         String content = "4444";
         ArticleForm dto = new ArticleForm(null, title, content);
-        Article expected = new Article(4L, title, content);
+        Article expected = new Article(7L, title, content);
 
         // 실제
         Article article = articleServive.create(dto);

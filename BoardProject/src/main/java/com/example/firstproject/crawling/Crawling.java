@@ -18,7 +18,8 @@ public class Crawling {
 
         try {
             document = conn.get();
-            Elements index = document.select(".tb_status thead tr");
+            Elements index = document.select(".point_up");
+            log.info(index.text());
 
         } catch (IOException e) {
             e.printStackTrace();
