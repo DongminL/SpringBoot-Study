@@ -31,7 +31,7 @@ public class ArticleApiController {
     }
 
     // POST
-    @PostMapping("/api/articles")   // htpp://localhost:8080/api/articles 주소로 보냄
+    @PostMapping("/api/articles")   // http://localhost:8080/api/articles 주소로 보냄
     public ResponseEntity<Article> create(@RequestBody ArticleForm dto) {
         Article created = articleServive.create(dto);   // Service 계층을 통해 DB에 DTO와 같은 데이터 생성
         return (created != null) ?
